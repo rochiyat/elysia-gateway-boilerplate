@@ -1,0 +1,23 @@
+{
+  "name": "ellysia-gateway-boilerplate",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "nodemon --watch src --exec bun run src/server.ts",
+    "start": "bun run src/server.ts",
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "nodemon": "^3.1.9"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "elysia": "^1.2.24",
+    "undici": "^7.4.0"
+  }
+}
