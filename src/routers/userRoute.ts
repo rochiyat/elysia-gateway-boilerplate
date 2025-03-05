@@ -6,7 +6,7 @@ import {
   createUser,
 } from '../controllers/userController';
 import { UserSchema, type UserType } from '../middleware/userMiddleware';
-import { errorHandler } from '../middleware/index';
+import { formatErrors } from '../middleware/index';
 export const userRoutes = new Elysia();
 userRoutes.get('/users', async () => {
   return getUsers();
@@ -24,6 +24,16 @@ userRoutes.post(
   },
   {
     body: UserSchema,
+    error({ code, error }) {
+      if (code === 'VALIDATION') {
+        return {
+          status: 400,
+          message: 'Validation failed',
+          errors: formatErrors(error.all),
+        };
+      }
+      return { status: 500, message: 'Internal Server Error' };
+    },
   }
 );
 

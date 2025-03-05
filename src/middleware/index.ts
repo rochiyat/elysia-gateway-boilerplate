@@ -1,14 +1,9 @@
 import { Elysia } from 'elysia';
 
-// Fungsi untuk memformat error validasi
-const formatErrors = (error: any) => {
-  if (!error || !Array.isArray(error.errors)) {
-    return [{ field: 'unknown', message: error.message || 'Validation error' }];
-  }
-
-  return error.errors.map((err: any) => ({
-    field: err.path ? err.path.replace('/', '') : 'unknown',
-    message: err.message || `Invalid value for ${err.path}`,
+export const formatErrors = (errors: any) => {
+  return errors.map((error: any) => ({
+    field: error.path.replace('/', ''),
+    message: error.message,
   }));
 };
 
