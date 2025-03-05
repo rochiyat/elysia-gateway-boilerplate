@@ -6,13 +6,12 @@ export async function getUsers() {
   return response;
 }
 
-export async function getUserById(id: number) {
+export async function getUserById(id: string) {
   const response = await $fetch(`${config.userServiceUrl}/users/${id}`);
   return response;
 }
 
 export async function createUser(user: any) {
-  console.log('user', user);
   const response = await $fetch(`${config.userServiceUrl}/users`, {
     method: 'POST',
     body: user,
@@ -20,7 +19,7 @@ export async function createUser(user: any) {
   return response;
 }
 
-export async function updateUser(id: number, user: any) {
+export async function updateUser(id: string, user: any) {
   const response = await $fetch(`${config.userServiceUrl}/users/${id}`, {
     method: 'PUT',
     body: user,

@@ -1,43 +1,51 @@
+import type { Context } from 'elysia';
 import {
   createUser as createUserService,
   getUsers as getUsersService,
   getUserById as getUserByIdService,
   updateUser as updateUserService,
 } from '../services/userService';
+import { returnSuccess, returnNonSuccess } from '../utils/httpUtil';
+import type { UserType } from '../middleware/userMiddleware';
 
-export const createUser = async (user: any) => {
-  console.log('user', user);
+export const createUser = async (ctx: Context) => {
   try {
-    return await createUserService(user);
+    const { body } = ctx;
+    const createdUser = await createUserService(body as unknown as UserType);
+    return returnSuccess(ctx, 201, 'User created successfully', createdUser);
   } catch (error) {
-    console.error(error);
-    throw error;
+    return returnNonSuccess(ctx, 500, 'Internal Server Error');
   }
 };
 
-export const getUsers = async () => {
+export const getUsers = async (ctx: Context) => {
   try {
-    return await getUsersService();
+    console.log('getUsers', ctx);
+    const users = await getUsersService();
+    return returnSuccess(ctx, 200, 'Users fetched successfully', users);
   } catch (error) {
-    console.error(error);
-    throw error;
+    return returnNonSuccess(ctx, 500, 'Internal Server Error');
   }
 };
 
-export const getUserById = async (id: number) => {
+export const getUserById = async (ctx: Context, id: string) => {
   try {
-    return await getUserByIdService(id);
+    console.log('ctx', ctx);
+    const user = await getUserByIdService(id);
+    console.log('user', user);
+    return returnSuccess(ctx, 200, 'User fetched successfully', user);
   } catch (error) {
-    console.error(error);
-    throw error;
+    return returnNonSuccess(ctx, 500, 'Internal Server Error');
   }
 };
 
-export const updateUser = async (id: number, user: any) => {
+export const updateUser = async (ctx: Context) => {
   try {
-    return await updateUserService(id, user);
+    const { id } = ctx.params;
+    const { body } = ctx;
+    const updatedUser = await updateUserService(id, body);
+    return returnSuccess(ctx, 200, 'User updated successfully', updatedUser);
   } catch (error) {
-    console.error(error);
-    throw error;
+    return returnNonSuccess(ctx, 500, 'Internal Server Error');
   }
 };

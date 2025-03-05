@@ -1,38 +1,55 @@
-import { Elysia, error } from 'elysia';
+import { Elysia, error, type Context } from 'elysia';
 import {
   getUsers,
   getUserById,
   updateUser,
   createUser,
 } from '../controllers/userController';
-import { UserSchema, type UserType } from '../middleware/userMiddleware';
-import { formatErrors } from '../middleware/index';
+import { UserSchema, UserUpdateSchema } from '../middleware/userMiddleware';
+import {
+  returnBadRequest,
+  returnInternalServerError,
+} from '../utils/helperUtil';
+
 export const userRoutes = new Elysia();
-userRoutes.get('/users', async () => {
-  return getUsers();
+
+userRoutes.get('/users', async (ctx: Context) => {
+  return getUsers(ctx);
 });
-userRoutes.get('/users/:id', async ({ params }) => {
-  return getUserById(Number(params.id));
+
+userRoutes.get('/users/:id', async (ctx: Context) => {
+  const { id } = ctx.params;
+  return getUserById(ctx, id);
 });
-userRoutes.put('/users/:id', async ({ params, body }) => {
-  return updateUser(Number(params.id), body);
-});
+
+userRoutes.put(
+  '/users/:id',
+  async (ctx: Context) => {
+    return updateUser(ctx);
+  },
+  {
+    body: UserUpdateSchema,
+    error({ code, error }) {
+      if (code === 'VALIDATION') {
+        return returnBadRequest(error.all);
+      }
+      return returnInternalServerError();
+    },
+  }
+);
+
 userRoutes.post(
   '/users',
-  ({ body }: { body: UserType }) => {
-    return createUser(body);
+  async (ctx: Context) => {
+    return createUser(ctx);
   },
   {
     body: UserSchema,
     error({ code, error }) {
       if (code === 'VALIDATION') {
-        return {
-          status: 400,
-          message: 'Validation failed',
-          errors: formatErrors(error.all),
-        };
+        return returnBadRequest(error.all);
       }
-      return { status: 500, message: 'Internal Server Error' };
+      return returnInternalServerError();
     },
   }
 );
