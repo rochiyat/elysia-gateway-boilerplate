@@ -5,14 +5,13 @@ This boilerplate is designed to build an Application Gateway based on ElysiaJS, 
 
 ## Key Features:
 
-```bash
-✅ Built with ElysiaJS – A super-fast and efficient TypeScript framework ⚡
-✅ Validation with sinclair/typebox – Strong and secure schema validation 🔍
-✅ HTTP Requests with ofetch – A more flexible and lightweight Fetch API 🌐
-✅ Middleware Support – Easily add authentication, logging, or rate limiting 🔒
-✅ Modular & Extensible – Easily customizable to fit your project needs 🛠️
-✅ Optimized Performance – Leveraging ElysiaJS for ultra-fast response times 🚀
-```
+- Built with ElysiaJS – A super-fast and efficient TypeScript framework ⚡
+- Validation with sinclair/typebox – Strong and secure schema validation 🔍
+- HTTP Requests with ofetch – A more flexible and lightweight Fetch API 🌐
+- Middleware Support – Easily add authentication, logging, or rate limiting 🔒
+- Pattern MVC – A simple and flexible pattern 🛠️
+- Optimized Performance – Leveraging ElysiaJS for ultra-fast response times 🚀
+
 
 
 ## Installation
@@ -47,11 +46,9 @@ MIT
 
 Rochiyat
 
-LinkedIn: https://www.linkedin.com/in/rochiyat/ 
-
-Github: https://github.com/rochiyat
-
-Instagram: https://instagram.com/rochiyat
+- LinkedIn: https://www.linkedin.com/in/rochiyat/ 
+- Github: https://github.com/rochiyat
+- Instagram: https://instagram.com/rochiyat
 
 ## Contribution
 

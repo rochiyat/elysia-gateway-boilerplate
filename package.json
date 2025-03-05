@@ -3,6 +3,13 @@
   "module": "index.ts",
   "type": "module",
   "private": true,
+  "author": {
+    "name": "Rochiyat",
+    "url": "https://github.com/rochiyat",
+    "email": "rochiyat@gmail.com"
+  },
+  "license": "MIT",
+  "node": ">=18.0.0",
   "scripts": {
     "dev": "nodemon --watch src --exec bun run src/server.ts",
     "start": "bun run build/server.js",
