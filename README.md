@@ -46,8 +46,11 @@ MIT
 ## Author
 
 Rochiyat
-LinkedIn: https://www.linkedin.com/in/rochiyat/
+
+LinkedIn: https://www.linkedin.com/in/rochiyat/ 
+
 Github: https://github.com/rochiyat
+
 Instagram: https://instagram.com/rochiyat
 
 ## Contribution
