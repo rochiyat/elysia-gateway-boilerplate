@@ -4,10 +4,10 @@
     "": {
       "name": "ellysia-gateway-boilerplate",
       "dependencies": {
+        "@sinclair/typebox": "^0.34.28",
         "dotenv": "^16.4.7",
         "elysia": "^1.2.24",
         "ofetch": "^1.4.1",
-        "zod": "^3.24.2",
       },
       "devDependencies": {
         "@types/bun": "latest",
@@ -110,7 +110,5 @@
     "undefsafe": ["undefsafe@2.0.5", "", {}, "sha512-WxONCrssBM8TSPRqN5EmsjVrsv4A8X12J4ArBiiayv3DyyG3ZlIg6yysuuSYdZsVz3TKcTg2fd//Ujd4CHV1iA=="],
 
     "undici-types": ["undici-types@6.20.0", "", {}, "sha512-Ny6QZ2Nju20vw1SRHe3d9jVu6gJ+4e3+MMpqu7pqE5HT6WsTSlce++GQmK5UXS8mzV8DSYHrQH+Xrf2jVcuKNg=="],
-
-    "zod": ["zod@3.24.2", "", {}, "sha512-lY7CDW43ECgW9u1TcT3IoXHflywfVqDYze4waEz812jR/bZ8FHDsl7pFQoSZTz5N+2NqRXs8GBwnAwo3ZNxqhQ=="],
   }
 }

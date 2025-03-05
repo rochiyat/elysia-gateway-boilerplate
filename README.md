@@ -19,18 +19,24 @@ This boilerplate is designed to build an Application Gateway based on ElysiaJS, 
 
 ```bash
 npm install
+or
+bun install
 ```
 
 ## Running Development
 
 ```bash
 npm run dev
+or
+bun run dev
 ```
 
 ## Running Production
 
 ```bash
 npm run build && npm run start
+or
+bun run build && bun run start
 ```
 
 ## License
