@@ -32,5 +32,5 @@ export const UserUpdateSchema = Type.Object({
   id: Type.String({ required: true }),
 });
 
-type UserType = Static<typeof UserSchema>;
-type UserUpdateType = Static<typeof UserUpdateSchema>;
+export type UserType = Static<typeof UserSchema>;
+export type UserUpdateType = Static<typeof UserUpdateSchema>;

@@ -1,4 +1,4 @@
-import { Elysia, error, type Context } from 'elysia';
+import { Elysia, type Context } from 'elysia';
 import {
   getUsers,
   getUserById,
