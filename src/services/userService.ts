@@ -26,3 +26,8 @@ export async function updateUser(id: string, user: any) {
   });
   return response;
 }
+
+export async function getUserByUsername(username: string) {
+  const response = await getUsers();
+  return response.find((user: any) => user.username === username);
+}

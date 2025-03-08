@@ -7,7 +7,7 @@ import {
 } from '../services/userService';
 import { returnSuccess, returnNonSuccess } from '../utils/httpUtil';
 import type { UserType } from '../middleware/userMiddleware';
-
+import { authHeader } from '../auth/auth';
 export const createUser = async (ctx: Context) => {
   try {
     const { body } = ctx;
@@ -40,6 +40,10 @@ export const updateUser = async (ctx: Context) => {
   try {
     const { id } = ctx.params;
     const { body } = ctx;
+    const { user } = await authHeader(ctx);
+    if (!user) {
+      return returnNonSuccess(ctx, 401, 'Unauthorized');
+    }
     const updatedUser = await updateUserService(id, body);
     return returnSuccess(ctx, 200, 'User updated successfully', updatedUser);
   } catch (error: unknown) {

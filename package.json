@@ -11,7 +11,7 @@
   "license": "MIT",
   "node": ">=18.0.0",
   "scripts": {
-    "dev": "nodemon --watch src --exec bun run src/server.ts",
+    "dev": "nodemon --watch src --exec DEBUG=* bun run src/server.ts",
     "start": "bun run build/server.js",
     "test": "bun test",
     "build": "bun build src/server.ts --outdir dist",
