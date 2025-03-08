@@ -11,6 +11,7 @@ This boilerplate is designed to build an Application Gateway based on ElysiaJS, 
 - Middleware Support – Easily add authentication, logging, or rate limiting 🔒
 - Pattern MVC – A simple and flexible pattern 🛠️
 - Eslint + Prettier – Code Formatting and Linting 🎨
+- JWT Authentication – Secure authentication with JOSE library 🔑
 - Optimized Performance – Leveraging ElysiaJS for ultra-fast response times 🚀
 
 
