@@ -20,6 +20,7 @@
     "noFallthroughCasesInSwitch": true,
     "outDir": "./dist",
     "rootDir": "./src",
+    "esModuleInterop": true,
 
     // Some stricter flags (disabled by default)
     "noUnusedLocals": false,

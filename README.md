@@ -10,6 +10,8 @@ This boilerplate is designed to build an Application Gateway based on ElysiaJS, 
 - HTTP Requests with ofetch – A more flexible and lightweight Fetch API 🌐
 - Middleware Support – Easily add authentication, logging, or rate limiting 🔒
 - Pattern MVC – A simple and flexible pattern 🛠️
+- Eslint + Prettier – Code Formatting and Linting 🎨
+- Unit Test with Vitest – Test-driven development 🧪
 - Optimized Performance – Leveraging ElysiaJS for ultra-fast response times 🚀
 
 
