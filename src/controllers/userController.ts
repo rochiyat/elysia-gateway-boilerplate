@@ -11,6 +11,10 @@ import { authHeader } from '../auth/auth';
 export const createUser = async (ctx: Context) => {
   try {
     const { body } = ctx;
+    const { user } = await authHeader(ctx);
+    if (!user) {
+      return returnNonSuccess(ctx, 401, 'Unauthorized');
+    }
     const createdUser = await createUserService(body as unknown as UserType);
     return returnSuccess(ctx, 201, 'User created successfully', createdUser);
   } catch (error: unknown) {
