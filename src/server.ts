@@ -1,7 +1,9 @@
 import { Elysia } from 'elysia';
+import debug from 'debug';
 import { routes } from './routers';
 import { config } from './configs/env.config';
 import dotenv from 'dotenv';
+import { authRoutes } from './auth/auth';
 
 dotenv.config();
 
@@ -9,9 +11,11 @@ if (!config.port) {
   throw new Error('PORT is not defined');
 }
 
-const app = new Elysia()
+export const app = new Elysia()
+  .use(authRoutes)
   .use(routes)
   .get('/', () => 'Hello World')
   .listen(config.port || 3000);
 
-console.log(`🚀 Gateway API running at http://localhost:${config.port}`);
+const log = debug('app:server');
+log(`🚀 Gateway API running at http://localhost:${config.port}`);

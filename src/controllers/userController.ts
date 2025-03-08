@@ -7,35 +7,36 @@ import {
 } from '../services/userService';
 import { returnSuccess, returnNonSuccess } from '../utils/httpUtil';
 import type { UserType } from '../middleware/userMiddleware';
-
+import { authHeader } from '../auth/auth';
 export const createUser = async (ctx: Context) => {
   try {
     const { body } = ctx;
+    const { user } = await authHeader(ctx);
+    if (!user) {
+      return returnNonSuccess(ctx, 401, 'Unauthorized');
+    }
     const createdUser = await createUserService(body as unknown as UserType);
     return returnSuccess(ctx, 201, 'User created successfully', createdUser);
-  } catch (error) {
-    return returnNonSuccess(ctx, 500, 'Internal Server Error');
+  } catch (error: unknown) {
+    return returnNonSuccess(ctx, 500, (error as Error).message);
   }
 };
 
 export const getUsers = async (ctx: Context) => {
   try {
-    console.log('getUsers', ctx);
     const users = await getUsersService();
     return returnSuccess(ctx, 200, 'Users fetched successfully', users);
-  } catch (error) {
-    return returnNonSuccess(ctx, 500, 'Internal Server Error');
+  } catch (error: unknown) {
+    return returnNonSuccess(ctx, 500, (error as Error).message);
   }
 };
 
 export const getUserById = async (ctx: Context, id: string) => {
   try {
-    console.log('ctx', ctx);
     const user = await getUserByIdService(id);
-    console.log('user', user);
     return returnSuccess(ctx, 200, 'User fetched successfully', user);
-  } catch (error) {
-    return returnNonSuccess(ctx, 500, 'Internal Server Error');
+  } catch (error: unknown) {
+    return returnNonSuccess(ctx, 500, (error as Error).message);
   }
 };
 
@@ -43,9 +44,13 @@ export const updateUser = async (ctx: Context) => {
   try {
     const { id } = ctx.params;
     const { body } = ctx;
+    const { user } = await authHeader(ctx);
+    if (!user) {
+      return returnNonSuccess(ctx, 401, 'Unauthorized');
+    }
     const updatedUser = await updateUserService(id, body);
     return returnSuccess(ctx, 200, 'User updated successfully', updatedUser);
-  } catch (error) {
-    return returnNonSuccess(ctx, 500, 'Internal Server Error');
+  } catch (error: unknown) {
+    return returnNonSuccess(ctx, 500, (error as Error).message);
   }
 };

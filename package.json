@@ -11,26 +11,43 @@
   "license": "MIT",
   "node": ">=18.0.0",
   "scripts": {
-    "dev": "nodemon --watch src --exec bun run src/server.ts",
+    "dev": "nodemon --watch src --exec DEBUG=* bun run src/server.ts",
     "start": "bun run build/server.js",
-    "build": "bun build src/server.ts --outdir build",
-    "build:prod": "bun build src/server.ts --outdir build --minify",
-    "clean": "rm -rf build",
+    "test": "bun test",
+    "build": "bun build src/server.ts --outdir dist",
+    "build:prod": "bun build src/server.ts --outdir dist --minify",
+    "clean": "rm -rf dist",
     "dev:clean": "bun run clean && bun run dev",
     "start:clean": "bun run clean && bun run start",
-    "dev:clean:watch": "bun run clean && bun run dev --watch"
+    "dev:clean:watch": "bun run clean && bun run dev --watch",
+    "lint": "eslint src/**/*.ts",
+    "lint:fix": "eslint src/**/*.ts --fix",
+    "format": "prettier --write src/**/*.ts",
+    "format:check": "prettier --check src/**/*.ts",
+    "prettier": "prettier --write src/**/*.ts"
   },
   "devDependencies": {
     "@types/bun": "latest",
-    "nodemon": "^3.1.9"
+    "@types/supertest": "^6.0.2",
+    "@typescript-eslint/eslint-plugin": "^8.26.0",
+    "@typescript-eslint/parser": "^8.26.0",
+    "eslint": "^9.21.0",
+    "eslint-config-prettier": "^10.0.2",
+    "eslint-plugin-prettier": "^5.2.3",
+    "nodemon": "^3.1.9",
+    "prettier": "^3.5.3",
+    "supertest": "^7.0.0"
   },
   "peerDependencies": {
     "typescript": "^5"
   },
   "dependencies": {
     "@sinclair/typebox": "^0.34.28",
+    "@types/debug": "^4.1.12",
+    "debug": "^4.4.0",
     "dotenv": "^16.4.7",
     "elysia": "^1.2.24",
+    "jose": "^6.0.8",
     "ofetch": "^1.4.1"
   }
 }
