@@ -3,7 +3,7 @@ import debug from 'debug';
 import { routes } from './routers';
 import { config } from './configs/env.config';
 import dotenv from 'dotenv';
-import { authRoutes, authMiddleware } from './auth/auth';
+import { authRoutes } from './auth/auth';
 
 dotenv.config();
 
@@ -13,10 +13,8 @@ if (!config.port) {
 
 export const app = new Elysia()
   .use(authRoutes)
-  .use(authMiddleware)
   .use(routes)
   .get('/', () => 'Hello World')
-  .get('/unauthorized', () => '🚫 Akses Ditolak')
   .listen(config.port || 3000);
 
 const log = debug('app:server');
