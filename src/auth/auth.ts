@@ -1,10 +1,10 @@
-import { Elysia, t } from 'elysia';
-import { SignJWT } from 'jose';
+import { Elysia, t, type Context } from 'elysia';
+import { jwtVerify, SignJWT, type JWTPayload } from 'jose';
 import { Buffer } from 'buffer';
 
 const SECRET_KEY = Buffer.from('your-secret-key', 'utf-8');
 
-const authRoutes = new Elysia().post(
+export const authRoutes = new Elysia().post(
   '/login',
   async ({ body }) => {
     if (body.username !== 'admin' || body.password !== 'password') {
@@ -26,4 +26,22 @@ const authRoutes = new Elysia().post(
   }
 );
 
-export { authRoutes };
+export const authMiddleware = (app: Elysia) =>
+  app.derive(async ({ headers, set }: Context) => {
+    const authHeader = headers.authorization;
+
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+      set.status = 401;
+      return { user: null, error: 'Token tidak ditemukan atau tidak valid' };
+    }
+
+    const token = authHeader.split(' ')[1];
+
+    try {
+      const { payload } = await jwtVerify(token, SECRET_KEY);
+      return { user: payload as JWTPayload, error: null }; // Simpan payload user
+    } catch (error) {
+      set.status = 403;
+      return { user: null, error: (error as Error).message };
+    }
+  });
