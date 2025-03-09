@@ -1,7 +1,7 @@
 # Elysia Gateway Boilerplate
 Elysia Gateway Boilerplate – High-Performance, Minimalist, and Flexible Application Gateway 🚀
 
-This boilerplate is designed to build an Application Gateway based on ElysiaJS, focusing on high performance, minimal structure, and flexibility.
+This boilerplate is designed to build an Application Gateway based on ElysiaJS, focusing on high performance, minimal structure, and flexibility. It provides a solid foundation for building efficient and secure applications. Structure project based on [Pattern MVC](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) and similar project build with express.
 
 ## Key Features:
 
